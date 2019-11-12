@@ -1,21 +1,17 @@
 // document meetodid
 // single element selectors
 
-sisu = document.getElementById('add-task'); // html sisu
-id = document.getElementById('add-task').id; // id 
-klass = document.getElementById('add-task').className; 
+sisu = document.querySelector('#title'); // id järgi
+sisu = document.querySelector('.card-title'); // klassi järgi
+sisu = document.querySelector('h5'); // elemendi järgi
 
-// stiili muutmine 
+//stiili muutmine
+document.querySelector('li').style.color = 'red';
+document.querySelector('ul li').style.color = 'blue';
+document.querySelector('li:last-child').style.color = 'red';
+document.querySelector('li:nth-child(2)').style.color = 'orange';
 
-sisu.style.background = '#333';
-sisu.style.color = '#fff';
-sisu.style.padding = '5px';
 
-
-// sisu muutmine
-sisu.textContent = 'Minu Ülesanded';
-sisu.innerText = 'Just minu ülesanded';
-sisu.innerHTML = '<span style="color:green">Vabad ülesanded</span>';
 console.log(sisu);
 
 
