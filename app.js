@@ -43,9 +43,9 @@ let search = window.location.search;
 console.log(hostname);
 
 // redirect 
-window.location.href = 'https://khk.ee';
+// window.location.href = 'https://khk.ee';
 
 // reload
-window.location.reload();
+// window.location.reload();
 
 
