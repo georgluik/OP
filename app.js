@@ -1,30 +1,19 @@
 // document meetodid
-// elementide loomine
+// elementide asendamine
 
-// loo element
-const liElement = document.createElement('li');
-// lisa klass
-liElement.className = 'collection-item';
+// leia vana element h5
+
+const vanaPealkiri = document.querySelector('h5');
+// leia kaart kus antud pealkiri on
+const divCardAction = document.querySelector('.card-action');
+// loo uus pealkiri
+const uusPealkiri = document.createElement('h3');
 // lisa id
-liElement.id = 'new-item';
-// lisa atribuut
-liElement.setAttribute('title', 'Uus element');
+uusPealkiri.id = 'new-title';
+// lisa sisu
+uusPealkiri.textContent = 'Uued ülesanded';
+// uusPealkiri.appendChild(document.createTextNode('Uued ülesanded'));
 
-// lisa teksti väljund
-liElement.textContent = 'Uus element';
-
-// loome lingi elemendid
-const link = document.createElement('a');
-// lisame klassid
-link.className = 'delete-item secondary-content';
-// lisame kustutamise ikoon
-link.innerHTML = '<i class="fa fa-remove"></i>';
-
-// lisame link listi elemendi sisse
-liElement.appendChild(link);
-
-// leiame ul element DOM-ist
-ulElement = document.querySelector('ul.collection');
-// lisa liElement ul elemendile
-ulElement.appendChild(liElement);
-console.log(ulElement);
+// asenda vana pealkiri uuega
+divCardAction.replaceChild(uusPealkiri, vanaPealkiri);
+console.log(uusPealkiri);
