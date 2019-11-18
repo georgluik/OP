@@ -1,50 +1,30 @@
 // document meetodid
-// node omadused ja meetodid
+// elementide loomine
 
-let nimekiri = document.querySelectorAll('ul.collection');
+// loo element
+const liElement = document.createElement('li');
+// lisa klass
+liElement.className = 'collection-item';
+// lisa id
+liElement.id = 'new-item';
+// lisa atribuut
+liElement.setAttribute('title', 'Uus element');
 
-let nimekirjaElement = document.querySelectorAll('li.collection-item');
-console.log(nimekiri);
-console.log(nimekirjaElement);
+// lisa teksti väljund
+liElement.textContent = 'Uus element';
 
-nimekiri = document.querySelector('ul.collection');
-console.log(nimekiri);
+// loome lingi elemendid
+const link = document.createElement('a');
+// lisame klassid
+link.className = 'delete-item secondary-content';
+// lisame kustutamise ikoon
+link.innerHTML = '<i class="fa fa-remove"></i>';
 
-nimekirjaElement = nimekiri.childNodes;
-console.log(nimekirjaElement);
+// lisame link listi elemendi sisse
+liElement.appendChild(link);
 
-sisu = nimekiri.childNodes;
-sisu = nimekiri.childNodes[0];
-sisu = nimekiri.childNodes[0].nodeName;
-sisu = nimekiri.childNodes[3].nodeType;
-
-/*
-erinevad node tüübid
-1 - element
-2 - atribuut
-3 - tekst
-8 - kommentaar
-9 - dokument
-10 - doctype
-*/
-
-sisu = nimekiri.children;
-sisu = nimekiri.children[1];
-nimekiri.children[1].textContent = 'Õpi rohkem JS';
-nimekiri.children[2].children[0].id = 'katse';
-console.log(sisu);
-
-sisu = nimekiri.firstChild; // node type
-sisu = nimekiri.firstElementChild; // value
-
-sisu = nimekiri.childElementCount;
-
-nimekirjaElement = document.querySelector('li.collection-item');
-sisu = nimekirjaElement.parentNode;
-sisu = nimekirjaElement.parentElement;
-sisu = nimekirjaElement.parentElement.parentElement;
-
-sisu = nimekirjaElement.nextSibling; // node type
-sisu = nimekirjaElement.nextElementSibling;
-console.log(sisu);
-
+// leiame ul element DOM-ist
+ulElement = document.querySelector('ul.collection');
+// lisa liElement ul elemendile
+ulElement.appendChild(liElement);
+console.log(ulElement);
