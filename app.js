@@ -2,24 +2,37 @@
 // click
 
 const kustutaKoik = document.querySelector('.clear-tasks');
-kustutaKoik.addEventListener('click', vajutaNupp);
+const text = document.querySelector('h5');
+const kaart = document.querySelector('.card');
+// click
+kustutaKoik.addEventListener('click', syndmus);
 
-function vajutaNupp(e){
-    let sisu = e;
-    sisu = e.target;
-    sisu = e.target.id;
-    sisu = e.target.className;
-    sisu = e.target.classList;
+// double click
+kustutaKoik.addEventListener('dblclick', syndmus);
 
-    // tüüp
-    sisu = e.type;
+kustutaKoik.addEventListener('mousedown', syndmus);
+kustutaKoik.addEventListener('mouseup', syndmus);
 
-    // sündmuse koordinaadid browseri akna suhtes
-    sisu = e.clientY;
-    sisu = e.clientX;
+// mouse enter
+kaart.addEventListener('mouseenter', syndmus)
+// mouse leave
+kaart.addEventListener('mouseleave', syndmus);
 
-    // sündmuse koordinaadid elemendi enda suhtes
-    sisu = e.offsetY;
-    sisu = e.offsetX;
-    console.log(sisu);
+// mouse over
+kaart.addEventListener('mouseover', syndmus);
+
+// mouse out
+kaart.addEventListener('mouseout', syndmus);
+
+// mouse move
+kaart.addEventListener('mousemove', syndmus);
+function syndmus(e){
+    // logi sündmuse tüüp
+    console.log(`Sündmuse tüüp: ${e.type}`);
+    // muuda text sisu hiirX x koord hiirY y koord
+    text.textContent = 'HiirX: ' + e.offsetX + ' HiirY: ' + e.offsetY;
+    //  text.textContent = `HiirX: ${e.offsetX}`;
+
+    // koosta body värv rgb(Xkoord, Ykoord, 40)
+    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`
 }
