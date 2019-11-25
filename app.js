@@ -1,32 +1,33 @@
 // inimese kirjeldus OOP abil
-// klasside kasutus
+// klasside pärilus
 
 class Isik {
     // konstruktor 
-    constructor(e, p, skp){
+    constructor(e, p){
         this.eesnimi = e;
         this.perenimi = p;
-        this.synnikuupaev = new Date(skp);
     }
     // tervitus meetod
     tervitus(){
         return `Tere, ${this.eesnimi} ${this.perenimi}!`;
     }
-    // vanuse arvutamise meetod
-    arvutaVanus(){
-        const vahe = Date.now() - this.synnikuupaev.getTime();
-        const vanus = new Date(vahe);
-        return vanus.getUTCFullYear() -1970;
+}
+
+// kliendi klass
+class Klient extends Isik{
+    constructor(e, p, t, s){
+    super(e, p);
+    this.telefon = p;
+    this.staatus = s;
     }
 
-    // abiellus - uus perenimi
-    abiellus = function(uusPereNimi){
-        this.perenimi = uusPereNimi;
+    // staatiline meetod
+    static kuutasu(){
+        return 5;
     }
 }
 
-const kadi = new Isik('Kadi', 'Padi', '10-10-1990');
+const kadi = new Klient('Kadi', 'Padi', '1234 1234', 'KULD');
+console.log(kadi.tervitus());
+console.log(Klient.kuutasu());
 
-kadi.abiellus('Vaher');
-
-console.log(kadi.tervitus(), kadi.arvutaVanus())
