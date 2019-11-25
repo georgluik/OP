@@ -1,31 +1,32 @@
 // inimese kirjeldus OOP abil
-// prototüüpide pärilus
-// isiku konstruktor
+// klasside kasutus
 
-function Isik(e, p){
-    this.eesnimi = e;
-    this.perenimi = p;
+class Isik {
+    // konstruktor 
+    constructor(e, p, skp){
+        this.eesnimi = e;
+        this.perenimi = p;
+        this.synnikuupaev = new Date(skp);
+    }
+    // tervitus meetod
+    tervitus(){
+        return `Tere, ${this.eesnimi} ${this.perenimi}!`;
+    }
+    // vanuse arvutamise meetod
+    arvutaVanus(){
+        const vahe = Date.now() - this.synnikuupaev.getTime();
+        const vanus = new Date(vahe);
+        return vanus.getUTCFullYear() -1970;
+    }
+
+    // abiellus - uus perenimi
+    abiellus = function(uusPereNimi){
+        this.perenimi = uusPereNimi;
+    }
 }
 
-Isik.prototype.taisNimi = function(){
-    return `${this.eesnimi} ${this.perenimi}`;
-}
+const kadi = new Isik('Kadi', 'Padi', '10-10-1990');
 
-// kliendi konstruktor
-function Klient(e, p, t, s){
-    Isik.call(this, e, p); // konstruktori kasutamine
-    this.telefon = t;
-    this.staatus = s;
-}
+kadi.abiellus('Vaher');
 
-// teiste meetodite/funktsioonide kasutamine
-Klient.prototype = Object.create(Isik.prototype);
-Klient.prototype.constructor = Klient;
-
-// määrame taisnimi funktsioon Klient objektile
-Klient.prototype.taisNimi = function(){
-    return `${this.eesnimi} ${this.perenimi} - sinul on ${this.staatus} tase`;
-}
-
-const kadi = new Klient('Kadi', 'Padi', '1234 1234', 'kuld');
-console.log(kadi.taisNimi())
+console.log(kadi.tervitus(), kadi.arvutaVanus())
