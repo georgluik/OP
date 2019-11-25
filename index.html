@@ -4,63 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <title>Document</title>
+    <!-- skeleton cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <title>Raamatud</title>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Ülesanded</span>
-                        <form id="add-task">
-                            <div class="row">
-                                    <div class="input-field col s12">
-                                        <label for="task">Uus ülesanne</label>
-                                        <input type="text" id="task" value="Õpi OOP JavaScript">
-                                    </div>
-                            </div>
-                            <input type="submit" value="Lisa ülesanne" class="btn">
-                        </form>
-                    </div>
-                    <!-- card-action algus-->
-                    <div class="card-action">
-                        <h5>Lisatud ülesanded</h5>
-                        <ul class="collection">
-                            <li class="collection-item">
-                                Õpi OOP JavaScript
-                                    <a href="#" class="delete-item secondary-content">
-                                     <i class="fa fa-remove"></i>
-                                    </a>
-                            </li>
-                            <li class="collection-item">
-                                    Õpi osa
-                                    <a href="#" class="delete-item secondary-content">
-                                        <i class="fa fa-remove"></i>
-                                    </a>
-                            </li>
-                             <li class="collection-item">
-                                        Õpi infoturve
-                                     <a href="#" class="delete-item secondary-content">
-                                         <i class="fa fa-remove"></i>
-                                     </a>
-                             </li>
-                        </ul>
-                        <a href="#" class="btn black clear-tasks">Kustuta kõik ülesanded</a>
-                    </div>    
-                </div>
+        <h1>Raamatud</h1>
+        <!--raamatu lisamise vorm-->
+        <form id="book-form">
+            <!--vormi sisestus väli-->
+            <div>
+                <label for="title">Pealkiri</label>
+                <input type="text" id="title" class="u-full-width">
             </div>
-        </div>
+            <div>
+                <label for="author">Autor</label>
+                <input type="text" id="autor" class="u-full-width">
+            </div>
+            <div>
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" class="u-full-width">
+            </div>
+            <!--nupp-->
+            <div>
+                <input type="submit" value="Lisa" class="u-full-width">
+            </div>
+        </form>
+        <!--raamatu lisamise vormi lõpp-->
+        <!--raamatute kuvamine -->
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Pealkiri</th>
+                    <th>Autor</th>
+                    <th>ISBN</th>
+                </tr>
+            </thead>
+            <tbody id="book-list"></tbody>
+        </table>
     </div>
-
-
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- lokaalne JS-->
     <script src="app.js"></script>
 </body>
 </html>
