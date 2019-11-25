@@ -1,43 +1,23 @@
-// storage
+// inimese kirjeldus
 
-// salvestame väärtus
-// localStorage.setItem('eesnimi', 'Georg');
-// localStorage.setItem('perenimi', 'Luik')
+let eesnimi, perenimi;
 
-// väärtuste eemaldamine
+let vanus;
 
-// localStorage.removeItem('perenimi');
-
-// väärtuste lugemine
-// onst eesnimi = localStorage.getItem('eesnimi');
-// console.log(eesnimi);
-
-// eemalda kõik väärtused
-// localStorage.clear();
-
-document.querySelector('form').addEventListener('submit', salvesta);
-
-function salvesta(e){
-    const uusYlesanne = document.getElementById('task').value;
-    // localStorage.setItem('tasks', uusYlesanne);
-    
-    let ylesanded;
-    if(localStorage.getItem('tasks') === null){
-        ylesanded = [];
-        // console.log(ylesanded);
-    } else {
-        ylesanded = JSON.parse(localStorage.getItem('tasks'));
-    }
-    console.log(ylesanded);
-    ylesanded.push(uusYlesanne);
-    console.log('ülesanne lisatud')
-    localStorage.setItem('tasks', JSON.stringify(ylesanded));
-
-    e.preventDefault();
+function taisNimi(eesnimi, perenimi){
+    return `${eesnimi} ${perenimi}`;
 }
 
-// loeme sisestatud ülesanded
-const ylesanded = JSON.parse(localStorage.getItem('tasks'));
-ylesanded.forEach(ylesanne => {
-    console.log(ylesanne);
-});
+function arvutaVanus(synnikuupaev){
+    synnikuupaev = new Date(synnikuupaev);
+    vaheSekundites = Date.now() -
+    synnikuupaev.getTime();
+    vanusDate = new Date(vaheSekundites);
+    aastaDate = vanusDate.getUTCFullYear();
+    vanus = aastaDate - 1970;
+    return `vanus: ${vanus}`;
+}
+
+console.log(taisNimi("Georg", "Luik"));
+
+console.log(arvutaVanus("1992-04-10"))
