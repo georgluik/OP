@@ -18,6 +18,19 @@ KL.prototype.puhastaSisend = function(){
     document.getElementById('autor').value = '';
     document.getElementById('isbn').value = '';
 }
+// raamatu lisamine
+KL.prototype.lisaRaamatTabelisse = function(r){
+    // loome tabeli rida
+    const rida = document.createElement('tr');
+    // täidame rida tabeli andmetega
+    rida.innerHTML = `<td>${r.pealkiri}</td>
+                      <td>${r.autor}</td>
+                      <td>${r.isbn}</td>
+    `;
+    // lisame rida tabelisse
+    tabel = document.getElementById('book-list');
+    tabel.appendChild(rida);
+}
 
 
 // kirjeldame raamatu lisamise sündmust
@@ -33,6 +46,10 @@ function lisaRaamat(e){
 
     // loome kasutajaliidese objekt temaga opereerimiseks
     const kl = new KL();
+
+    // lisame sisestatud raamat tabelisse
+    kl.lisaRaamatTabelisse(raamat);
+
     // puhastame väljad sisestatud andmetest
     kl.puhastaSisend();
 
