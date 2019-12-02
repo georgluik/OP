@@ -65,6 +65,31 @@ KL.prototype.teade = function(s, stiil){
 
 }
 
+// raamatute lugemine LS-st
+KL.prototype.loeRaamatud = function(){
+    // loome raamatute hoidla local storages 
+    let raamatud;
+    // kui raamatuid veel LSis ei eksisteeri 
+    if(localStorage.getItem('raamatud') === null){
+        raamatud = [];
+    } else {
+        // kui raamatud LSis olemas, saame need kätte
+        raamatud = JSON.parse(localStorage.getItem('raamatud'));
+    }
+    return raamatud;
+}
+
+// raamatu salvestamine local storage-sse
+KL.prototype.salvestaRaamat = function(r){
+    // tekitame raamatute massiiv
+    raamatud = this.loeRaamatud();
+    // lükkame uue raamatu massiivi
+    raamatud.push(r);
+    // lisame andmed LS-sse
+    localStorage.setItem('raamatud', JSON.stringify(raamatud));
+    console.log(raamatud);
+}
+
 // kirjeldame raamatu lisamise sündmust
 document.getElementById('book-form').addEventListener('submit', lisaRaamat);
 // raamatu lisamise funktsioon
@@ -86,6 +111,9 @@ function lisaRaamat(e){
     } else {
         // lisame sisestatud raamat tabelisse
          kl.lisaRaamatTabelisse(raamat);
+
+         // salvestame raamatu local storage-sse
+         kl.salvestaRaamat(raamat);
          
          kl.teade('Raamat on lisatud!', 'valid')
     }
