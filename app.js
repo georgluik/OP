@@ -104,6 +104,19 @@ KL.prototype.naitaRaamatud = function(){
     });
 }
 
+KL.prototype.kustutaRaamatLS = function(isbn){
+    // vaatame millised raamatud on olemas
+    const raamatud =  this.loeRaamatud();
+    raamatud.forEach(function(raamat, index){
+        // loeme andmed LS-st
+        if(raamat.isbn === isbn){
+            raamatud.splice(index, 1)
+        }
+    });
+    localStorage.setItem('raamatud', JSON.stringify(raamatud));
+    return true;
+}
+
 // kirjeldame andmete lugemise sündmust LS-s
 document.addEventListener('DOMContentLoaded', raamatuteTabel);
 
@@ -159,8 +172,14 @@ function kustutaRaamat(e){
 
     
     // kutsume tabelis oleva raamatu kustutamise funktsioon
-    onKustutatud = kl.kustutaRaamatTabelist(e.target);
-    
+    // loome X link millel klikime kustutamiseks
+    const X = e.target;
+    // saame kustutava raamatu isbn kätte
+    isbn = X.parentElement.previousElementSibling.textContent;
+    // kustutame andmed tabeli väljundist
+    kl.kustutaRaamatTabelist(X);
+    // kustutame andmed local storage-st
+    onKustutatud = kl.kustutaRaamatLS(isbn);
     // väljastame vastava teate
     if(onKustutatud){
         kl.teade('Raamat on kustutatud', 'valid');}
