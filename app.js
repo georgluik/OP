@@ -82,12 +82,37 @@ KL.prototype.loeRaamatud = function(){
 // raamatu salvestamine local storage-sse
 KL.prototype.salvestaRaamat = function(r){
     // tekitame raamatute massiiv
-    raamatud = this.loeRaamatud();
+    const raamatud = this.loeRaamatud();
     // lükkame uue raamatu massiivi
     raamatud.push(r);
     // lisame andmed LS-sse
     localStorage.setItem('raamatud', JSON.stringify(raamatud));
     console.log(raamatud);
+}
+
+// salvestatud raamatute näitamine
+KL.prototype.naitaRaamatud = function(){
+    // vaatame millised raamatud on olemas
+    const raamatud = this.loeRaamatud();
+    raamatud.forEach(function(raamat){
+        // loeme andmed LS-st ühekaupa ja teisendame raamat objektiks
+        const r = new Raamat(raamat['autor'], raamat['pealkiri'], raamat['isbn']);
+        // loome kl objekt väljastamiseks
+        kl = new KL();
+        // väljastame tabeli rida
+        kl.lisaRaamatTabelisse(r);
+    });
+}
+
+// kirjeldame andmete lugemise sündmust LS-s
+document.addEventListener('DOMContentLoaded', raamatuteTabel);
+
+// raamatute tabeli funktsioon
+function raamatuteTabel(e){
+    // loome kasutajaliidese objekt temaga opereerimiseks
+    const kl = new KL();
+    // kutsume raamatute näitamiseks funktsiooni
+    kl.naitaRaamatud();
 }
 
 // kirjeldame raamatu lisamise sündmust
@@ -123,9 +148,6 @@ function lisaRaamat(e){
     // puhastame väljad sisestatud andmetest
     kl.puhastaSisend();
 
-
-
-
     e.preventDefault();
 }
 
@@ -135,6 +157,7 @@ function kustutaRaamat(e){
     // loome kasutajaliidese objekti temaga opereerimiseks
     const kl = new KL();
 
+    
     // kutsume tabelis oleva raamatu kustutamise funktsioon
     onKustutatud = kl.kustutaRaamatTabelist(e.target);
     
