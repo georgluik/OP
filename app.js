@@ -11,6 +11,11 @@ function KL(){
 
 }
 
+// local storage(LS) konstruktor
+function LS(){
+
+}
+
 // KL funktsionaal
 // sisendväljade puhastamine
 KL.prototype.puhastaSisend = function(){
@@ -65,8 +70,9 @@ KL.prototype.teade = function(s, stiil){
 
 }
 
+// LS funktsionaal
 // raamatute lugemine LS-st
-KL.prototype.loeRaamatud = function(){
+LS.prototype.loeRaamatud = function(){
     // loome raamatute hoidla local storages 
     let raamatud;
     // kui raamatuid veel LSis ei eksisteeri 
@@ -80,7 +86,7 @@ KL.prototype.loeRaamatud = function(){
 }
 
 // raamatu salvestamine local storage-sse
-KL.prototype.salvestaRaamat = function(r){
+LS.prototype.salvestaRaamat = function(r){
     // tekitame raamatute massiiv
     const raamatud = this.loeRaamatud();
     // lükkame uue raamatu massiivi
@@ -92,8 +98,10 @@ KL.prototype.salvestaRaamat = function(r){
 
 // salvestatud raamatute näitamine
 KL.prototype.naitaRaamatud = function(){
+    // loome LS objekt funktsionaali kutsumiseks
+    const ls = new LS();
     // vaatame millised raamatud on olemas
-    const raamatud = this.loeRaamatud();
+    const raamatud = ls.loeRaamatud();
     raamatud.forEach(function(raamat){
         // loeme andmed LS-st ühekaupa ja teisendame raamat objektiks
         const r = new Raamat(raamat['autor'], raamat['pealkiri'], raamat['isbn']);
@@ -104,7 +112,7 @@ KL.prototype.naitaRaamatud = function(){
     });
 }
 
-KL.prototype.kustutaRaamatLS = function(isbn){
+LS.prototype.kustutaRaamatLS = function(isbn){
     // vaatame millised raamatud on olemas
     const raamatud =  this.loeRaamatud();
     raamatud.forEach(function(raamat, index){
@@ -150,9 +158,12 @@ function lisaRaamat(e){
         // lisame sisestatud raamat tabelisse
          kl.lisaRaamatTabelisse(raamat);
 
+        // loome LS objekt funktsionaali kutsumiseks
+        const ls = new LS();
          // salvestame raamatu local storage-sse
-         kl.salvestaRaamat(raamat);
-         
+         ls.salvestaRaamat(raamat);
+
+         // anname teate lisamisest
          kl.teade('Raamat on lisatud!', 'valid')
     }
 
@@ -178,8 +189,11 @@ function kustutaRaamat(e){
     isbn = X.parentElement.previousElementSibling.textContent;
     // kustutame andmed tabeli väljundist
     kl.kustutaRaamatTabelist(X);
+
+    // loome LS objekt funktsionaali kutsumiseks
+    const ls = new LS();
     // kustutame andmed local storage-st
-    onKustutatud = kl.kustutaRaamatLS(isbn);
+    onKustutatud = ls.kustutaRaamatLS(isbn);
     // väljastame vastava teate
     if(onKustutatud){
         kl.teade('Raamat on kustutatud', 'valid');}
