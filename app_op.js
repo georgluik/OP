@@ -59,7 +59,7 @@ teade(s, stiil){
 // kustutamine
 kustutaRaamatTabelist(kustutaElement){
     if(kustutaElement.className === 'kustuta'){
-        tabeliRida = kustutaElement.parentElement.parentElement;
+        const tabeliRida = kustutaElement.parentElement.parentElement;
         tabeliRida.remove();
         return true;
     }
@@ -104,4 +104,30 @@ function lisaRaamat(e){
     kl.puhastaSisend();
 
     e.preventDefault();
+}
+
+// raamatu kustutamise syndmus
+document.getElementById('book-list').addEventListener('click', kustutaRaamat);
+function kustutaRaamat(e){
+    // loome kasutajaliidese objekti temaga opereerimiseks
+    const kl = new KL();
+
+    
+    // kutsume tabelis oleva raamatu kustutamise funktsioon
+    // loome X link millel klikime kustutamiseks
+    const X = e.target;
+    // saame kustutava raamatu isbn kätte
+    isbn = X.parentElement.previousElementSibling.textContent;
+    // kustutame andmed tabeli väljundist
+    kl.kustutaRaamatTabelist(X);
+
+    // loome LS objekt funktsionaali kutsumiseks
+    // const ls = new LS();
+    // kustutame andmed local storage-st
+    // onKustutatud = ls.kustutaRaamatLS(isbn);
+    // väljastame vastava teate
+    if(onKustutatud){
+        kl.teade('Raamat on kustutatud', 'valid');}
+
+        e.preventDefault();
 }
