@@ -1,8 +1,17 @@
 
+// kirjeldame andmete lugemise sündmust LS-s
+document.addEventListener('DOMContentLoaded', raamatuteTabel);
+
 
 // kasutaja liides
 
-
+// raamatute tabeli funktsioon
+function raamatuteTabel(e){
+    // loome kasutajaliidese objekt temaga opereerimiseks
+    const kl = new KL();
+    // kutsume raamatute näitamiseks funktsiooni
+    kl.naitaRaamatud();
+}
 
 document.getElementById('book-form').addEventListener('submit', lisaRaamat);
 // raamatu lisamise funktsioon
@@ -26,9 +35,9 @@ function lisaRaamat(e){
          kl.lisaRaamatTabelisse(raamat);
 
         // loome LS objekt funktsionaali kutsumiseks
-        // const ls = new LS();
+        const ls = new LS();
          // salvestame raamatu local storage-sse
-         // ls.salvestaRaamat(raamat);
+         ls.salvestaRaamat(raamat);
 
          // anname teate lisamisest
          kl.teade('Raamat on lisatud!', 'valid')
@@ -58,9 +67,9 @@ function kustutaRaamat(e){
     kl.kustutaRaamatTabelist(X);
 
     // loome LS objekt funktsionaali kutsumiseks
-    // const ls = new LS();
+    const ls = new LS();
     // kustutame andmed local storage-st
-    // onKustutatud = ls.kustutaRaamatLS(isbn);
+    onKustutatud = ls.kustutaRaamatLS(isbn);
     // väljastame vastava teate
     if(onKustutatud){
         kl.teade('Raamat on kustutatud', 'valid');}
